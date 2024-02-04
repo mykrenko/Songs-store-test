@@ -1,4 +1,6 @@
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   addFavoriteSong,
   removeFavoriteSong,
@@ -11,17 +13,23 @@ const useFavoriteSongs = () => {
   const favoriteSongs = useSelector(selectFavoriteSongs);
   const favoriteSongsCount = favoriteSongs.length;
 
-  const isFavorite = (song) => isSongAlreadyExists(favoriteSongs, song);
+  const isFavorite = useCallback(
+    (song) => isSongAlreadyExists(favoriteSongs, song),
+    [favoriteSongs]
+  );
 
-  const toggleFavorite = (song) => {
-    const { id, name } = song;
+  const toggleFavorite = useCallback(
+    (song) => {
+      const { id, name } = song;
 
-    if (isFavorite(song)) {
-      dispatch(removeFavoriteSong({ songId: id, songName: name }));
-    } else {
-      dispatch(addFavoriteSong(song));
-    }
-  };
+      if (isFavorite(song)) {
+        dispatch(removeFavoriteSong({ songId: id, songName: name }));
+      } else {
+        dispatch(addFavoriteSong(song));
+      }
+    },
+    [dispatch, isFavorite]
+  );
 
   return { toggleFavorite, isFavorite, favoriteSongs, favoriteSongsCount };
 };

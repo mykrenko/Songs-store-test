@@ -1,30 +1,70 @@
-# React + TypeScript + Vite
+# Songs Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Songs Store project! This application is a modern web platform for exploring and managing a collection of songs by various artists. Built with React, Redux Toolkit, and Material-UI, it offers a responsive and interactive user experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Browse Artists**: Discover a variety of artists and their music at your fingertips.
+- **Favorite Songs**: Mark songs as favorites and manage your personal collection.
+- **Responsive Design**: Enjoy a seamless experience across all your devices, thanks to Material-UI.
+- **Error Handling**: Robust error handling with React Error Boundary to ensure application stability.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get a local copy up and running follow these simple steps.
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+## Usage
+
+For development, you can run a local server:
+
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This command starts a local development server with hot reloading. Open [ http://localhost:5173/](http://localhost:5173/) to view it in the browser.
+
+To build the project for production, use:
+
+```bash
+npm run build
+```
+
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+EMAIL: pysarenko.myk@gmail.com
+
+## Acknowledgements
+
+- [React](https://reactjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Material-UI](https://mui.com/)
+- [Vite](https://vitejs.dev/)
+- [React Router](https://reactrouter.com/)

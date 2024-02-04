@@ -1,8 +1,9 @@
 import { styled } from "@mui/system";
 import { Box, CircularProgress } from "@mui/material";
+import { useErrorBoundary } from "react-error-boundary";
+
 import ArtistCard from "../../components/ArtistCard";
 import { useGetArtistsQuery } from "../../store/services/artistsAndSongsApi";
-import { useErrorBoundary } from "react-error-boundary";
 
 const StyledMainPageContainer = styled(Box)({
   width: "100vw",

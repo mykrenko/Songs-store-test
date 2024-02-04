@@ -1,6 +1,7 @@
 import { styled } from "@mui/system";
 import { Box, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
+
 import SongsList from "../../components/SongsList";
 
 const StyledArtistPageContainer = styled(Box)({
@@ -36,7 +37,7 @@ const ArtistPage = () => {
 
   return (
     <StyledArtistPageContainer>
-      <StyledArtistAvatar src={avatar} />
+      <StyledArtistAvatar src={avatar} alt={`${name} image`} />
       <StyledArtistName>{name}</StyledArtistName>
       <SongsList artistId={id} artistSongsCount={songsCount} isForArtistPage />
     </StyledArtistPageContainer>

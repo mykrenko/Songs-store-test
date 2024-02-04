@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import MainPage from "../pages/MainPage";
 import ArtistPage from "../pages/ArtistPage";
 import FavouritesPage from "../pages/FavouritesPage";

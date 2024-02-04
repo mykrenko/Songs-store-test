@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { styled } from "@mui/system";
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -20,7 +21,7 @@ const SongInfoContainer = styled(Box)({
   alignItems: "center",
 });
 
-const StyledSongDuration = styled(Typography)({
+const SongDetailTypography = styled(Typography)({
   marginRight: "8px",
 });
 
@@ -42,20 +43,34 @@ const SongItem = ({
         <IconButton
           onClick={onLikeClick}
           aria-label={`${
-            isSongFavourite ? "song added" : "add song to favourites"
+            isSongFavourite
+              ? "Remove song from favourites"
+              : "Add song to favourites"
           }`}
         >
           {isSongFavourite ? <StyledFavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
         <Avatar src={cover} alt={artistName} variant="rounded" />
-        <Box>
+        <>
           {!isForArtistPage && <Typography>{artistName}</Typography>}
           <Typography>{name}</Typography>
-        </Box>
+        </>
       </SongInfoContainer>
-      <StyledSongDuration>{duration}</StyledSongDuration>
+      <SongDetailTypography>{duration}</SongDetailTypography>
     </SongItemContainer>
   );
+};
+
+SongItem.propTypes = {
+  isSongFavourite: PropTypes.bool,
+  song: PropTypes.shape({
+    cover: PropTypes.string,
+    artistName: PropTypes.string,
+    name: PropTypes.string,
+    duration: PropTypes.string,
+  }),
+  isForArtistPage: PropTypes.bool,
+  onLikeClick: PropTypes.func,
 };
 
 export default SongItem;

@@ -8,7 +8,7 @@ const StyledTitle = styled(Typography)({
   color: "white",
 });
 
-const HeaderTitle = ({ title = "Title" }) => {
+const HeaderTitle = ({ title }) => {
   return (
     <Box>
       <StyledTitle>{title}</StyledTitle>

@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 import useFavoriteSongs from "../../hooks/useFavouriteSongs";
 
-const PreferenceСounterContainer = styled(Box)({
+const FavoritesIconContainer = styled(Box)({
   display: "flex",
   justifyContent: "center",
 });
 
-const StyledFavoriteIcon = styled(FavoriteIcon)({
+const ColoredFavoriteIcon = styled(FavoriteIcon)({
   color: "#9a3bc2",
 });
 
@@ -23,10 +23,10 @@ const PreferenceСounter = () => {
   };
 
   return (
-    <PreferenceСounterContainer>
+    <FavoritesIconContainer>
       <IconButton
         onClick={navigateToFavouritesPage}
-        aria-label={`${favoriteSongsCount} liked sounds`}
+        aria-label={`Navigate to favourite songs page. ${favoriteSongsCount} liked sounds`}
       >
         <Badge
           badgeContent={favoriteSongsCount}
@@ -37,10 +37,10 @@ const PreferenceСounter = () => {
             horizontal: "right",
           }}
         >
-          <StyledFavoriteIcon />
+          <ColoredFavoriteIcon />
         </Badge>
       </IconButton>
-    </PreferenceСounterContainer>
+    </FavoritesIconContainer>
   );
 };
 
