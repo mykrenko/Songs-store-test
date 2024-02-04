@@ -1,10 +1,12 @@
-import PropTypes from "prop-types";
 import { styled } from "@mui/system";
 import { Box } from "@mui/material";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import PreferenceСounter from "../PreferenceСounter";
 import BackButton from "../BackButton";
 import HeaderTitle from "../HeaderTitle";
-import { useLocation } from "react-router-dom";
+import { HEADER_TITLES_MAP } from "./constants";
 
 const StyledHeader = styled("header")({
   width: "90vw",
@@ -22,11 +24,18 @@ const StyledRightHeaderInfo = styled(Box)({
   minWidth: "10vw",
 });
 
-const Header = ({ title = "Title" }) => {
-  const mainPageLocation = "/";
-  const location = useLocation();
+const getHeaderTitle = (pathname) =>
+  HEADER_TITLES_MAP.find((entry) => entry.pattern.test(pathname))?.title ||
+  "Default Title";
 
-  const isUserOnMainPage = location.pathname === mainPageLocation;
+const Header = () => {
+  const { pathname } = useLocation();
+  const isUserOnMainPage = pathname === "/";
+  const title = getHeaderTitle(pathname);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <StyledHeader>
@@ -37,10 +46,6 @@ const Header = ({ title = "Title" }) => {
       <PreferenceСounter />
     </StyledHeader>
   );
-};
-
-Header.propTypes = {
-  title: PropTypes.string,
 };
 
 export default Header;

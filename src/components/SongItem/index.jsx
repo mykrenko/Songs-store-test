@@ -3,19 +3,10 @@ import { Box, Typography, Avatar, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-// const StyledArtistsPageContainer = styled(Box)({
-//   width: "100vw",
-//   height: "100%",
-//   minHeight: "92.5vh",
-//   display: "flex",
-//   flexDirection: "column",
-//   alignItems: "center",
-//   backgroundColor: "#a6b8f3",
-// });
-
 const SongItemContainer = styled(Box)({
-  minWidth: "40%",
-  height: "5%",
+  width: "100%",
+  minHeight: "10%",
+  marginBottom: "1%",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -23,35 +14,46 @@ const SongItemContainer = styled(Box)({
 });
 
 const SongInfoContainer = styled(Box)({
-  minWidth: "50%",
+  minWidth: "70%",
   gap: "5%",
   display: "flex",
   alignItems: "center",
+});
+
+const StyledSongDuration = styled(Typography)({
+  marginRight: "8px",
 });
 
 const StyledFavoriteIcon = styled(FavoriteIcon)({
   color: "#9a3bc2",
 });
 
-const SongItem = ({ alreadyAdded = false }) => {
+const SongItem = ({
+  isSongFavourite = false,
+  song,
+  isForArtistPage = true,
+  onLikeClick,
+}) => {
+  const { cover, artistName, name, duration } = song;
+
   return (
     <SongItemContainer>
       <SongInfoContainer>
         <IconButton
-          onClick={() => console.log("ClEck")}
+          onClick={onLikeClick}
           aria-label={`${
-            alreadyAdded ? "song added" : "add song to favourites"
+            isSongFavourite ? "song added" : "add song to favourites"
           }`}
         >
-          {alreadyAdded ? <StyledFavoriteIcon /> : <FavoriteBorderIcon />}
+          {isSongFavourite ? <StyledFavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
-        <Avatar variant="rounded"></Avatar>
+        <Avatar src={cover} alt={artistName} variant="rounded" />
         <Box>
-          <Typography>{"Artist name"}</Typography>
-          <Typography>{"Song name"}</Typography>
+          {!isForArtistPage && <Typography>{artistName}</Typography>}
+          <Typography>{name}</Typography>
         </Box>
       </SongInfoContainer>
-      <Typography>{"03:25"}</Typography>
+      <StyledSongDuration>{duration}</StyledSongDuration>
     </SongItemContainer>
   );
 };

@@ -1,10 +1,9 @@
-import PropTypes from "prop-types";
-import { Box } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
+import { Box, IconButton, Badge } from "@mui/material";
 import { styled } from "@mui/system";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
+
+import useFavoriteSongs from "../../hooks/useFavouriteSongs";
 
 const PreferenceСounterContainer = styled(Box)({
   display: "flex",
@@ -15,7 +14,8 @@ const StyledFavoriteIcon = styled(FavoriteIcon)({
   color: "#9a3bc2",
 });
 
-const PreferenceСounter = ({ count = 0 }) => {
+const PreferenceСounter = () => {
+  const { favoriteSongsCount } = useFavoriteSongs();
   const navigate = useNavigate();
 
   const navigateToFavouritesPage = () => {
@@ -26,10 +26,10 @@ const PreferenceСounter = ({ count = 0 }) => {
     <PreferenceСounterContainer>
       <IconButton
         onClick={navigateToFavouritesPage}
-        aria-label={`${count} liked sounds`}
+        aria-label={`${favoriteSongsCount} liked sounds`}
       >
         <Badge
-          badgeContent={count}
+          badgeContent={favoriteSongsCount}
           color="primary"
           showZero
           anchorOrigin={{
@@ -42,10 +42,6 @@ const PreferenceСounter = ({ count = 0 }) => {
       </IconButton>
     </PreferenceСounterContainer>
   );
-};
-
-PreferenceСounter.propTypes = {
-  count: PropTypes.number,
 };
 
 export default PreferenceСounter;

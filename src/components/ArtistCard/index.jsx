@@ -1,4 +1,4 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { styled } from "@mui/system";
 import {
   Card,
@@ -19,6 +19,8 @@ const ArtistCardContainer = styled(Card)({
   justifyContent: "center",
   backgroundColor: "#7481aa",
   margin: "5%",
+  boxShadow: "rgba(0, 0, 0, 0.24) 17px 17px 12px",
+  color: "rgb(217 0 254 / 100%)",
 });
 
 const CardActionAreaContainer = styled(CardActionArea)({
@@ -29,11 +31,9 @@ const CardActionAreaContainer = styled(CardActionArea)({
   padding: "5%",
 });
 
-const ArtistImg = styled(CardMedia, {
-  shouldForwardProp: () => true,
-})(() => ({
+const ArtistImg = styled(CardMedia)({
   maxHeight: "80%",
-}));
+});
 
 const ArtistName = styled(Typography)({
   width: "100%",
@@ -45,31 +45,32 @@ const ArtistName = styled(Typography)({
   fontSize: "18px",
 });
 
-const ArtistCard = () => {
+const ArtistCard = ({ avatar, name, id, songsCount }) => {
   const navigate = useNavigate();
 
   const navigateToArtist = () => {
-    navigate("/artist");
+    navigate(`/artist/${id}`, {
+      state: { artistInfo: { avatar, name, id, songsCount } },
+    });
   };
 
   return (
     <ArtistCardContainer>
-      <CardActionAreaContainer onClick={() => navigateToArtist()}>
-        <ArtistImg
-          component="img"
-          image="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/777.jpg"
-          alt={"asd"}
-        />
+      <CardActionAreaContainer onClick={navigateToArtist}>
+        <ArtistImg component="img" image={avatar} alt={`${name} avatar`} />
         <CardContent>
-          <ArtistName>{"Artist Name"}</ArtistName>
+          <ArtistName>{name}</ArtistName>
         </CardContent>
       </CardActionAreaContainer>
     </ArtistCardContainer>
   );
 };
 
-// ArtistCard.propTypes = {
-//   title: PropTypes.string,
-// };
+ArtistCard.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  songsCount: PropTypes.number,
+};
 
 export default ArtistCard;

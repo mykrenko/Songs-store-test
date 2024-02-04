@@ -1,10 +1,11 @@
 import { styled } from "@mui/system";
 import { Box, Typography } from "@mui/material";
-import SongItem from "../../components/SongItem";
+import { useLocation } from "react-router-dom";
+import SongsList from "../../components/SongsList";
 
 const StyledArtistPageContainer = styled(Box)({
   width: "100vw",
-  height: "100%",
+  height: "92%",
   minHeight: "92.5vh",
   display: "flex",
   flexDirection: "column",
@@ -14,7 +15,7 @@ const StyledArtistPageContainer = styled(Box)({
 
 const StyledArtistAvatar = styled("img")({
   width: "25%",
-  marginTop: "5%",
+  marginTop: "1%",
 });
 
 const StyledArtistName = styled(Typography)({
@@ -29,15 +30,15 @@ const StyledArtistName = styled(Typography)({
 });
 
 const ArtistPage = () => {
+  // This part (data) could be done by creating a new slice (+ custom hook) and retrieving the information from there, but since this is a test task, it was decided to go with a more simplified approach.
+  const location = useLocation();
+  const { avatar, name, id, songsCount } = location.state.artistInfo;
+
   return (
     <StyledArtistPageContainer>
-      <StyledArtistAvatar
-        src={
-          "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/777.jpg"
-        }
-      />
-      <StyledArtistName>{"Artist Name"}</StyledArtistName>
-      <SongItem />
+      <StyledArtistAvatar src={avatar} />
+      <StyledArtistName>{name}</StyledArtistName>
+      <SongsList artistId={id} artistSongsCount={songsCount} isForArtistPage />
     </StyledArtistPageContainer>
   );
 };

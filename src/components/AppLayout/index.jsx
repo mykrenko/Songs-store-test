@@ -1,11 +1,14 @@
 import { Outlet } from "react-router";
 import Header from "../Header";
+import ReactErrorBoundary from "../ReactErrorBoundary";
 
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <ReactErrorBoundary>
+        <Outlet />
+      </ReactErrorBoundary>
     </>
   );
 };

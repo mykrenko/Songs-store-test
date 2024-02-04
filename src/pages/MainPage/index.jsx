@@ -1,7 +1,8 @@
 import { styled } from "@mui/system";
-import { Box } from "@mui/material";
-
+import { Box, CircularProgress } from "@mui/material";
 import ArtistCard from "../../components/ArtistCard";
+import { useGetArtistsQuery } from "../../store/services/artistsAndSongsApi";
+import { useErrorBoundary } from "react-error-boundary";
 
 const StyledMainPageContainer = styled(Box)({
   width: "100vw",
@@ -14,10 +15,16 @@ const StyledMainPageContainer = styled(Box)({
 });
 
 const MainPage = () => {
+  const { data: artists, error, isLoading } = useGetArtistsQuery();
+  const { showBoundary } = useErrorBoundary();
+
+  if (isLoading) return <CircularProgress />;
+  if (error) showBoundary(error);
+
   return (
     <StyledMainPageContainer>
-      {[{ name: "Luke" }, { name: "Saree" }].map((name) => (
-        <ArtistCard key={name} />
+      {artists.map((artist) => (
+        <ArtistCard key={artist.id} {...artist} />
       ))}
     </StyledMainPageContainer>
   );
