@@ -22,7 +22,11 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Install NPM packages
+1. Clone the repo
+   ```sh
+   git clone https://github.com/mykrenko/Songs-store-test.git
+   ```
+2. Install NPM packages
    ```sh
    npm install
    ```
@@ -35,7 +39,7 @@ For development, you can run a local server:
 npm run dev
 ```
 
-This command starts a local development server with hot reloading. Open [ http://localhost:5173/](http://localhost:5173/) to view it in the browser.
+This command starts a local development server with hot reloading. Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
 
 To build the project for production, use:
 
@@ -59,7 +63,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-EMAIL: pysarenko.myk@gmail.com
+My email: pysarenko.myk@gmail.com
+Project Link: [https://github.com/mykrenko/Songs-store-test](https://github.com/mykrenko/Songs-store-test)
 
 ## Acknowledgements
 
